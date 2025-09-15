@@ -2,11 +2,9 @@
 
 ## Project Definition
 This project is an exercise designed to learn and practice **Docker**, **AWS**, **Terraform**, and **Git/GitHub** through a hands-on deployment scenario.  
-The goal is to containerize a simple Flask web app, deploy it on AWS using ECS (Elastic Container Service), provision all resources with Terraform, and set up a CI/CD pipeline with GitHub Actions.
-
+The goal is to containerize a simple Flask web app, deploy it on AWS using ECS (Elastic Container Service), provision all resources with Terraform.
 
 ---
-
 
 ## Exercise Breakdown
 
@@ -20,7 +18,7 @@ The goal is to containerize a simple Flask web app, deploy it on AWS using ECS (
   - "Hello World"
   - The current UTC timestamp
 - Add `requirements.txt` with Flask as a dependency.
-- Test the app locally (`python app.py`).
+- Test the app locally (`flask app.py`).
 
 
 ### 2. Docker
@@ -29,22 +27,11 @@ The goal is to containerize a simple Flask web app, deploy it on AWS using ECS (
   ```bash
   docker build -t hello-world-app ./app
   docker run -p 5000:5000 hello-world-app
-- Push the image to a container registry (Docker Hub or AWS ECR).
+- Push the image to a container registry (Docker Hub).
 
 ### 3. Terraform (Infrastructure as Code)
 - Set up Terraform configuration in terraform/ to provision:
     - `VPC, subnets, and security groups`
-    - `ECS cluster`
-    - `Task definition and service for the app`
-    - `Load balancer to expose the app publicly`
-    - `S3 bucket for Terraform remote state`
-    - `IAM roles and permissions`
+    - `Create ec2 instance with user_data set up file`
 - Run terraform apply to create the infrastructure.
 - Verify that the app is accessible via the public load balancer URL.
-
-### 4. Git & GitHub Actions (CI/CD)
-- Add .github/workflows/deploy.yml to:
-    - `Build and push Docker images on every push to main.`
-    - `Run terraform fmt and terraform validate.`
-    - `Apply Terraform automatically (or require manual approval).`
-- Store AWS credentials securely in GitHub Secrets.
